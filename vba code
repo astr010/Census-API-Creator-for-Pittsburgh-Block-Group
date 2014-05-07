@@ -1,0 +1,41 @@
+Sub MAKE_API()
+Dim wb As Workbook
+Dim ws As Worksheet
+Set wb = ActiveWorkbook
+Set ws = wb.ActiveSheet
+Dim URL As String
+Dim URLBG As String
+Dim URLST As String
+Dim URLCNTY As String
+Dim URLTRCT As String
+Dim STATE As String
+Dim COUNTY As String
+Dim TRACT As String
+Dim BLKGRP As String
+Dim API_KEY As String
+Dim CENSUS_CODE As String
+''=====================
+''ENTER YOUR API KEY
+API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+''======================
+k = 2
+''============================
+''ENTER WHAT YOUR LOOKING FOR
+CENSUS_CODE = "P0010001"
+''============================
+Do While ws.Cells(k, 1) <> ""
+STATE = "42"
+COUNTY = "003"
+TRACT = ws.Cells(k, 1)
+BLKGRP = ws.Cells(k, 2)
+
+URL = "http://api.census.gov/data/2010/sf1?key="
+URLBG = "block+group:"
+URLST = "&in=state:"
+URLCNTY = "+county:"
+URLTRCT = "+tract:"
+ws.Cells(k, 7) = URL + API_KEY + "&get=" + CENSUS_CODE + "&for=" + URLBG + BLKGRP + URLST + STATE + URLCNTY + COUNTY + URLTRCT + TRACT
+k = k + 1
+Loop
+
+End Sub
